@@ -1,15 +1,14 @@
-import components.Graph;
+import constants.SizeFrames;
 
-import javax.swing.*;
+import java.io.IOException;
 
 import static org.jfree.chart.ui.UIUtils.centerFrameOnScreen;
 
 public class main {
-    public static void main(String[] args) {
-       Window window = new Window("Graph", 900, 700);
-       centerFrameOnScreen(window);
-       window.setVisible(true);
-
+    public static void main(String[] args) throws IOException {
+       Window mainFrame = new Window("Graph");
+       centerFrameOnScreen(mainFrame);
+       mainFrame.setVisible(true);
 
     }
 }

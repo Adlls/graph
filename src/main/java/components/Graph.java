@@ -50,8 +50,8 @@ public class Graph extends JPanel {
         String title = "";
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
                 title,
-                "Date",
-                "Price",
+                "",
+                "",
                 priceData,
                 true,
                 true,
@@ -69,7 +69,7 @@ public class Graph extends JPanel {
                 StandardXYToolTipGenerator.DEFAULT_TOOL_TIP_FORMAT,
                 new SimpleDateFormat("d-MMM-yyyy"), new DecimalFormat("0.00")));
 
-        NumberAxis rangeAxis2 = new NumberAxis("Volume");
+        NumberAxis rangeAxis2 = new NumberAxis("");
         rangeAxis2.setUpperMargin(1.00);  // to leave room for price line
         plot.setRangeAxis(1, rangeAxis2);
         plot.setDataset(1, createVolumeDataset());
@@ -86,7 +86,6 @@ public class Graph extends JPanel {
         renderer2.setBarPainter(new StandardXYBarPainter());
         renderer2.setShadowVisible(false);
         return chart;
-
     }
 
     private static XYDataset createPriceDataset() {

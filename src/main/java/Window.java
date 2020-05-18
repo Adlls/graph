@@ -1,46 +1,43 @@
 import components.ControlPanel;
 import components.Graph;
+import constants.SizeFrames;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ui.ApplicationFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 import static components.Graph.createDemoPanel;
 import static org.jfree.chart.ui.UIUtils.centerFrameOnScreen;
 
 public class Window extends JFrame {
-    private int width;
-    private int height;
+
     private String title;
 
-    public Window(String title, int width, int height) {
+    public Window(String title) throws IOException {
         super(title);
-
         this.title = title;
-        this.width = width;
-        this.height = height;
-        setCenterWindow(width, height);
+        setCenterWindow(SizeFrames.WIDTH_MAINFRAME, SizeFrames.HEIGHT_MAINFRAME);
         setResizable(false);
         setVisible(true);
-        setSize(width, height);
+        setSize(SizeFrames.WIDTH_MAINFRAME, SizeFrames.HEIGHT_MAINFRAME);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(null);
         setComponents();
     }
 
 
-   public void setComponents() {
+   public void setComponents() throws IOException {
         JPanel controlPanel = new ControlPanel();
         JPanel graph = Graph.createDemoPanel();
         add(graph);
-        graph.setBounds( 0, 0, this.width, this.height - ControlPanel.getHeightCP());
-        controlPanel.setBounds( 0, this.height - ControlPanel.getHeightCP(),
-                this.width, ControlPanel.getHeightCP());
+        graph.setBounds( 0, 0, SizeFrames.WIDTH_GRAPH, SizeFrames.HEIGHT_GRAPH);
+        controlPanel.setBounds( 0, SizeFrames.HEIGHT_GRAPH,
+                SizeFrames.WIDTH_CONTROL_PANEL, SizeFrames.HEIGHT_CONTROL_PANEL);
         add(controlPanel);
         controlPanel.setBackground(Color.WHITE);
    }
-
 
    public void setCenterWindow(int width, int height) {
        Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -48,5 +45,9 @@ public class Window extends JFrame {
        int y = (int) ((dimension.getHeight() - height) / 2);
        setLocation(x, y);
    }
+
+
 }
+
+
 
